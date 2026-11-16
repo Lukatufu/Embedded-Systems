@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ჩაშენებული სისტემები</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#f5f4f0;--s:#fff;--s2:#f0efe9;--t:#1a1a18;--t2:#6b6b64;--b:rgba(0,0,0,.1);--b2:rgba(0,0,0,.2);--g:#1D9E75;--gl:#EAF3DE;--gd:#3B6D11;--r:#A32D2D;--rl:#FCEBEB;--tag:#E1F5EE;--tagt:#0F6E56;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161715;--s:#212220;--s2:#2a2b28;--t:#ecebe6;--t2:#a3a39b;--b:rgba(255,255,255,.12);--b2:rgba(255,255,255,.25);--gl:#1f3a2c;--gd:#8fd9b6;--r:#f08c8c;--rl:#3d2222;--tag:#1b3a30;--tagt:#7fd8b5;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#161715;--s:#212220;--s2:#2a2b28;--t:#ecebe6;--t2:#a3a39b;--b:rgba(255,255,255,.12);--b2:rgba(255,255,255,.25);--gl:#1f3a2c;--gd:#8fd9b6;--r:#f08c8c;--rl:#3d2222;--tag:#1b3a30;--tagt:#7fd8b5;color-scheme:dark}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--t);min-height:100vh;padding:2rem 1rem}
+.c{max-width:680px;margin:0 auto}
+header{text-align:center;margin-bottom:2rem}
+header h1{font-size:24px;font-weight:600;margin-bottom:4px}
+header p{font-size:14px;color:var(--t2)}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.qc{font-size:13px;color:var(--t2)}
+.pill{font-size:13px;font-weight:500;padding:4px 12px;border-radius:20px;background:var(--s);border:.5px solid var(--b)}
+.track{height:5px;background:var(--b);border-radius:3px;margin-bottom:1.5rem;overflow:hidden}
+.fill{height:100%;background:var(--g);width:0;transition:width .4s}
+.card{background:var(--s);border:.5px solid var(--b);border-radius:14px;padding:1.5rem;margin-bottom:1rem}
+.tag{display:inline-block;font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px;background:var(--tag);color:var(--tagt);margin-bottom:10px}
+.q{font-size:16px;font-weight:500;line-height:1.55;margin-bottom:1.25rem}
+.opts{display:flex;flex-direction:column;gap:8px}
+.o{background:var(--s2);border:.5px solid var(--b);border-radius:10px;padding:11px 15px;font-size:14px;font-family:inherit;color:var(--t);text-align:left;cursor:pointer;line-height:1.45;display:flex;gap:10px;transition:border-color .15s,transform .1s}
+.o:hover:not(:disabled){border-color:var(--b2);transform:translateX(2px)}
+.l{font-weight:600;font-size:13px;min-width:18px;color:var(--t2)}
+.o.reveal{background:var(--gl);border-color:var(--g);color:var(--gd)}.o.reveal .l{color:var(--g)}
+.o.wrong{background:var(--rl);border-color:var(--r);color:var(--r)}.o.wrong .l{color:var(--r)}
+.o:disabled{cursor:default;transform:none}
+.fb{margin-top:12px;padding:9px 14px;border-radius:10px;font-size:13px;font-weight:500}
+.fb.ok{background:var(--gl);color:var(--gd);border:.5px solid var(--g)}
+.fb.no{background:var(--rl);color:var(--r);border:.5px solid var(--r)}
+.nav{display:flex;gap:10px;margin-top:.5rem}
+.nb{flex:1;padding:10px 20px;border-radius:10px;font-size:14px;font-family:inherit;font-weight:500;cursor:pointer;border:.5px solid var(--b2);background:var(--s);color:var(--t)}
+.nb:disabled{opacity:.3;cursor:default}
+.nb.p{background:var(--g);border-color:var(--g);color:#fff}
+.res{background:var(--s);border:.5px solid var(--b);border-radius:14px;padding:2.5rem 2rem;text-align:center}
+.ring{width:120px;height:120px;margin:0 auto 1.5rem;position:relative}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.rb{fill:none;stroke:var(--b);stroke-width:8}
+.rf{fill:none;stroke:var(--g);stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset 1s}
+.rl{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+.rp{font-size:26px;font-weight:600}.rs{font-size:12px;color:var(--t2)}
+.res h2{font-size:20px;margin-bottom:6px}
+.rm{font-size:14px;color:var(--t2);margin-bottom:1.5rem}
+.dots{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin:0 auto 1.5rem;max-width:400px}
+.d{width:11px;height:11px;border-radius:50%}.d.c{background:var(--g)}.d.w{background:var(--r)}
+.stats{display:flex;gap:12px;justify-content:center;margin-bottom:1.5rem}
+.sb{background:var(--s2);border-radius:10px;padding:12px 20px;min-width:90px}
+.sv{font-size:22px;font-weight:600}.sl{font-size:11px;color:var(--t2);margin-top:2px}
+</style>
+</head>
+<body>
+<div class="c">
+<header><h1>ჩაშენებული სისტემები</h1><p>50 კითხვა</p></header>
+<div class="top"><span class="qc" id="qc"></span><span class="pill" id="sb"></span></div>
+<div class="track"><div class="fill" id="pb"></div></div>
+<div id="area"></div>
+<div class="nav" id="nav"><button class="nb" id="prev">← წინა</button><button class="nb p" id="next">შემდეგი →</button></div>
+</div>
+<script>
+const S1="სიმრავლეები",S2="ბულის იგივეობები",S3="ლოგიკური გეიტები",S4="სქემები";
+const Q=[
+["რიცხვით სიმრავლეებში „გამოთვლადი დეკლარირების“ დროს შემადგენილი ელემენტები არის:",["სიმრავლის ელემენტები მოცემულია დამახასიათებელი თვისებების მიხედვით: M={x: x ხასიათდება თვისებით P}","სიმრავლის ყველა ელემენტი არის მკაფიოდ მითითებული. მაგ: M={წითელი, ყვითელი, მწვანე}","სიმრავლის ელემენტები განისაზღვრება მხოლოდ გრაფიკული დიაგრამის საშუალებით","სიმრავლე არ შეიცავს არცერთ ელემენტს და აღინიშნება ∅ სიმბოლოთი"],1,S1],
+["რიცხვით სიმრავლეებში „აღწერილობითი დეკლარირების“ დროს შემადგენილი ელემენტები არის:",["სიმრავლის ელემენტები მოცემულია დამახასიათებელი თვისებების მიხედვით: M={x: x ხასიათდება თვისებით P}","სიმრავლის ყველა ელემენტი არის მკაფიოდ ჩამოთვლილი: M={წითელი, ყვითელი, მწვანე}","სიმრავლის ელემენტები მოცემულია მხოლოდ დალაგებული წყვილების სახით","სიმრავლე შედგება მხოლოდ სასრული რაოდენობის ნატურალური რიცხვებისგან"],0,S1],
+["თითოეულ ობიექტ X-ს ეწოდება M სიმრავლის . . .",["ქვესიმრავლე","ექსპონენტა","ელემენტი","კარდინალური რიცხვი"],2,S1],
+["სიმრავლეთა თეორიის ავტორია:",["ჯორჯ ბული","გეორგ კანტორი","ავგუსტუს დე მორგანი","ლეონარდ ეილერი"],1,S1],
+["თუ B-ს ყველა ელემენტი წარმოადგენს A სიმრავლის ელემენტს, მაშინ მას ეწოდება:",["A და B სიმრავლეების თანაკვეთა","A და B სიმრავლეების გაერთიანება","A სიმრავლის დამატება","A სიმრავლის ქვესიმრავლე"],3,S1],
+["სიმრავლეს A∪B = {x: x∈A or x∈B} ეწოდება",["გაერთიანება A და B სიმრავლის","თანაკვეთა A და B სიმრავლის","სხვაობა A და B სიმრავლის","დეკარტული ნამრავლი A და B სიმრავლის"],0,S1],
+["თითოეული M სიმრავლისთვის, სიმრავლე P(M)={M’: M’ ⊆ M} ეწოდება M-ის",["დამატება","თანაკვეთა","ექსპონენტა","სხვაობა"],2,S1],
+["ორი A და B სიმრავლე, თუ ისინი შეიცავენ ერთი და იგივე ელემენტებს, B ⊆ A და A ⊆ B, ეწოდება",["არაგადამკვეთი","ტოლი","ცარიელი","ორთოგონალური"],1,S1],
+["ქვესიმრავლე B ⊆ A და A ≠ B ეწოდება",["ცარიელი სიმრავლე","უნივერსალური სიმრავლე","ექსპონენტა","ნამდვილი ქვესიმრავლე"],3,S1],
+["სიმრავლეს A∩B = {x: x∈A and x∈B} ეწოდება",["გაერთიანება A და B სიმრავლის","თანაკვეთა A და B სიმრავლის","სხვაობა A და B სიმრავლის","დეკარტული ნამრავლი A და B სიმრავლის"],1,S1],
+["სიმრავლეს A\\B = {x: x∈A and x∉B} ეწოდება",["სხვაობა A და B სიმრავლის","გაერთიანება A და B სიმრავლის","თანაკვეთა A და B სიმრავლის","ექსპონენტა A და B სიმრავლის"],0,S1],
+["სიმრავლეს A×B = {(x,y): x∈A and y∈B} ეწოდება",["გაერთიანება A და B სიმრავლის","თანაკვეთა A და B სიმრავლის","დეკარტული ნამრავლი A და B","სხვაობა A და B სიმრავლის"],2,S1],
+["B ⊆ A არის სხვაობა A\\B მას აგრეთვე ეწოდება",["გაერთიანება","თანაკვეთა","ექსპონენტა","დამატება"],3,S1],
+["თუ სიმრავლე A და B-ს არ აქვთ საერთო ელემენტი, მაშინ მათ ეწოდებათ",["ტოლი","არაგადამკვეთი","ქვესიმრავლეები","ექვივალენტური"],1,S1]
+];
+// Boolean identities
+[["a + 1","0|1|a|a'",1],["a⋅a","0|1|a + a = a|a'",2],["a⋅b","b⋅a|a + b|0|1",0],["a+a⋅b","b|0|1|a",3],["a⋅(a+b)","b|a|a + b|0",1],["a + a","0|1|a|2a",2],["a+0","0|1|a'|a",3],["a⋅0","0|a|1|a'",0],["a⋅1","1|a|0|a'",1],["a+1","a|0|1|a'",2]]
+.forEach(([e,o,a])=>Q.push([e+" იგივეობა უდრის",o.split("|"),a,S2]));
+// Gates
+[["AND",1,0,"1|0|A|B",1],["AND",0,0,"1|A'|B'|0",3],["AND",0,1,"0|1|B|A'",0],["AND",1,1,"0|A'|1|2",2],
+["OR",1,0,"0|1|B|A'",1],["OR",1,1,"0|A'|2|1",3],["OR",0,1,"1|0|A|B'",0],["OR",0,0,"1|0|A'|B'",1],
+["NAND",1,1,"1|A|0|B",2],["NAND",1,0,"0|1|B|A'",1],["NAND",0,1,"0|A|B'|1",3],["NAND",0,0,"1|0|A|B",0],
+["XOR",1,1,"1|0|A|B",1],["XOR",0,0,"1|A'|0|B'",2],["XOR",1,0,"0|B|A'|1",3],["XOR",0,1,"1|0|A|B'",0],
+["XNOR",1,1,"0|1|A'|B'",1],["XNOR",1,0,"1|A|0|B'",2],["XNOR",0,0,"0|A|B|1",3],["XNOR",0,1,"0|1|A'|B",0]]
+.forEach(([g,a,b,o,n])=>Q.push([`${g} გეიტის შემთხვევაში, როდესაც შემავალი სიგნალები არის: A=${a}, და B=${b}, გამომავალი სიგნალი O იქნება:`,o.split("|"),n,S3]));
+// Circuits
+const G="რამდენი ორ შემავლიანი გეიტისგან შედგება ფუნქცია: ",I="რამდენი ინვერტერისგან შედგება ფუნქცია: ";
+[[G+"z = a'b'c'd + bcd + ad' + b'cd'","9|11|10|12",1],[G+"u = a'b'c + ad'c + b'cd'","6|7|8|9",2],[G+"u = a'b' + ad'c + ab'cd'","7|9|10|8",1],[G+"u = a'b' + ad'c + b'cd' + ab'cd'","11|9|10|12",3],[I+"u = a'b'c'd + a'cd' + a'd'","5|7|6|8",1],[I+"u = a'b'c'd + a'b'cd' + a'b'c'd + a'cd' + a'd'","10|11|13|12",2]]
+.forEach(([q,o,a])=>Q.push([q,o.split("|"),a,S4]));
+
+const T=Q.length,L="ABCD";
+let cur=0,score=0,ans=Array(T).fill(null);
+const $=id=>document.getElementById(id);
+function render(){
+  const q=Q[cur],done=ans[cur]!==null;
+  $("pb").style.width=Math.round((cur+(done?1:0))/T*100)+"%";
+  $("qc").textContent=`კითხვა ${cur+1} / ${T}`;
+  $("sb").textContent=`ქულა: ${score}`;
+  let h=`<div class="card"><span class="tag">${q[3]}</span><p class="q">${cur+1}. ${q[0]}</p><div class="opts">`;
+  q[1].forEach((o,i)=>{
+    let c="o";
+    if(done){if(i===q[2])c+=" reveal";else if(i===ans[cur])c+=" wrong"}
+    h+=`<button class="${c}" ${done?"disabled":""} onclick="pick(${i})"><span class="l">${L[i]}</span><span>${o}</span></button>`;
+  });
+  h+="</div>";
+  if(done){const ok=ans[cur]===q[2];h+=`<div class="fb ${ok?"ok":"no"}">${ok?"✓ სწორია!":`✗ სწორი პასუხი: ${L[q[2]]}. ${q[1][q[2]]}`}</div>`}
+  $("area").innerHTML=h+"</div>";
+  $("prev").disabled=cur===0;
+  const n=$("next");n.disabled=!done;
+  if(cur===T-1){n.textContent="შედეგები →";n.onclick=results}
+  else{n.textContent="შემდეგი →";n.onclick=()=>go(1)}
+}
+function pick(i){if(ans[cur]!==null)return;ans[cur]=i;if(i===Q[cur][2])score++;render()}
+function go(d){cur=Math.max(0,Math.min(T-1,cur+d));render()}
+$("prev").onclick=()=>go(-1);
+function results(){
+  const p=Math.round(score/T*100),C=2*Math.PI*45;
+  const msg=p>=90?"შესანიშნავი შედეგი!":p>=70?"კარგი შედეგი! კიდევ ცოტა და სრულყოფილი იქნება.":p>=50?"გააგრძელე სწავლა — სწორ გზაზე ხარ!":"გამეორება საჭიროა. გაიარე კიდევ ერთხელ!";
+  const dots=ans.map((a,i)=>`<div class="d ${a===Q[i][2]?"c":"w"}"></div>`).join("");
+  $("area").innerHTML=`<div class="res"><div class="ring"><svg viewBox="0 0 100 100"><circle class="rb" cx="50" cy="50" r="45"/><circle class="rf" id="rf" cx="50" cy="50" r="45" stroke-dasharray="${C}" stroke-dashoffset="${C}"/></svg><div class="rl"><div class="rp">${p}%</div><div class="rs">${score}/${T}</div></div></div>
+  <h2>${msg}</h2><p class="rm">ჩაშენებული სისტემები</p>
+  <div class="stats"><div class="sb"><div class="sv" style="color:var(--g)">${score}</div><div class="sl">სწორი</div></div><div class="sb"><div class="sv" style="color:var(--r)">${T-score}</div><div class="sl">არასწორი</div></div><div class="sb"><div class="sv">${T}</div><div class="sl">სულ</div></div></div>
+  <div class="dots">${dots}</div><button class="nb p" onclick="restart()" style="width:100%;max-width:260px">თავიდან დაწყება</button></div>`;
+  $("nav").style.display="none";$("pb").style.width="100%";
+  $("qc").textContent="დასრულებულია";$("sb").textContent=`ქულა: ${score}/${T}`;
+  setTimeout(()=>{$("rf").style.strokeDashoffset=C-p/100*C},100);
+}
+function restart(){cur=0;score=0;ans=Array(T).fill(null);$("nav").style.display="flex";render()}
+render();
+</script>
+</body>
+</html>
